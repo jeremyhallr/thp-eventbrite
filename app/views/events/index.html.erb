@@ -1,30 +1,21 @@
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Hello <% if user_signed_in? %><%= current_user.email %><% end %>!</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <% if user_signed_in? %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary btn-lg" %>
+    <% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary btn-lg" %>
+    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
+</div>
+
 <h1 class="text-dark">Events#index</h1>
 <p>Find me in app/views/events/index.html.erb</p>
 
-<p>HELLOOOOOO</p>
+<% @events.each do |event| %>
+<% @event_id = event.id %>
 
-<ul>
-  <% if user_signed_in? %>
-    <li>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    </li>
-
-    <li>
-      Voici ton email : <%= current_user.email %>
-    </li>
-
-    <li>
-      <%= link_to "Edit email / password", edit_user_registration_path %>
-    </li>
-
-  <% else %>
-    <li>
-      <%= link_to "Sign in", new_user_session_path %>
-    </li>
-
-    <li>
-      <%= link_to "Sign up", new_user_registration_path %>
-    </li>
-
-  <% end %>
-</ul>
+  <h5><%= event.title %></h5>
+<% end %>
