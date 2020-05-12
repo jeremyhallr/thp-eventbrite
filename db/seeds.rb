@@ -10,16 +10,19 @@ require 'faker'
 
 User.destroy_all
 Event.destroy_all
-Attendance.destroy_all
 
-20.times do
+def duration_gen
+  duration = rand(6..30)*5
+end
+
+13.times do
   user_name = Faker::Name.first_name
   user_name_low = user_name.downcase
   user_lastname = Faker::Name.last_name
-  User.create(email: "#{user_name_low}@yopmail.com", first_name: user_name, last_name: user_lastname)
+  User.create(email: "#{user_name_low}@yopmail.com", first_name: user_name, last_name: user_lastname, password: "123456")
 end
 
-8.times do |index|
-  Event.create(start_date: Time.now+rand(30..1440), duration: rand(5.120), title: Faker::Superhero.name, description: Faker::Restaurant.review, price: rand(1..55), location: Faker::Address.city, admin: User.all.sample)
+8.times do
+  Event.create(start_date: Time.now+rand(30..1440), duration: duration_gen, title: Faker::Superhero.name, description: Faker::Restaurant.review, price: rand(1..55), location: Faker::Address.city, admin: User.all.sample)
 end
 
