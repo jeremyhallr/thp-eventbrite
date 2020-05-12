@@ -1,10 +1,25 @@
 <h1 class="h1 mt-5 font-weight-normal text-center">Hello <strong><%= @email %></strong> !</h1>
 
-<div class="container text-center">
+<div class="container text-center mb-3">
   <%= link_to "Edit email/password", edit_user_registration_path, :class => "btn btn-primary btn-sm text-center" %>
 </div>
 
-<h2 class="h2 mt-3 mb-5 font-weight-normal text-center"><u>The events you manage :</u></h2>
+<div class="container">
+  <div class="card">
+    <div class="h2 card-header">
+      Your info
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Description</h5>
+      <p class="card-text"><%= current_user.description %></p>
+      <%= link_to "Edit event", edit_user_path, :class => "btn btn-primary btn-sm" %>
+    </div>
+  </div>
+</div>
+
+<% unless @events == [] %>
+  <h2 class="h2 mt-3 mb-5 font-weight-normal text-center"><u>The events you manage :</u></h2>
+<% end %>
 
 <div class="container">
   <div class="row">
@@ -14,7 +29,7 @@
     <div class="col-md-6 mb-5">
       <h2><%= event.title %></h2>
       <p><%= event.description %></p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        <%= link_to "View details", event_path(event.id), class: "mb-1 btn btn-secondary" %>
       <div class="text-muted">
         <p>
           Location : <%= event.location %></br>

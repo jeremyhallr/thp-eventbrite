@@ -20,6 +20,6 @@ Attendance.destroy_all
 end
 
 8.times do |index|
-  Event.create(start_date: Time.now+rand(30..1440), duration: rand(1800..7200), title: Faker::Superhero.name, description: Faker::Restaurant.review, price: rand(1..55), location: Faker::Address.city, admin: User.all.sample)
+  Event.create(start_date: Time.now+rand(30..1440), duration: rand(5.120), title: Faker::Superhero.name, description: Faker::Restaurant.review, price: rand(1..55), location: Faker::Address.city, admin: User.all.sample)
 end
 
