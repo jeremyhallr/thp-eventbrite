@@ -12,13 +12,13 @@
     <div class="card-body">
       <h5 class="card-title">Description</h5>
       <p class="card-text"><%= current_user.description %></p>
-      <%= link_to "Edit event", edit_user_path, :class => "btn btn-primary btn-sm" %>
+      <%= link_to "Edit info", edit_user_path, :class => "btn btn-primary btn-sm" %>
     </div>
   </div>
 </div>
 
 <% unless @events == [] %>
-  <h2 class="h2 mt-3 mb-5 font-weight-normal text-center"><u>The events you manage :</u></h2>
+  <h2 class="h2 mt-3 mb-5 font-weight-normal text-center"><u>The event(s) you manage :</u></h2>
 <% end %>
 
 <div class="container">
