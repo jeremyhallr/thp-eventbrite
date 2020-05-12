@@ -12,13 +12,14 @@ User.destroy_all
 Event.destroy_all
 Attendance.destroy_all
 
-# 30.times do
-#   user_name = Faker::Name.first_name
-#   user_name_low = user_name.downcase
-#   user_lastname = Faker::Name.last_name
-#   User.create(email: "#{user_name_low}@yopmail.com", first_name: user_name, last_name: user_lastname)
-# end
+20.times do
+  user_name = Faker::Name.first_name
+  user_name_low = user_name.downcase
+  user_lastname = Faker::Name.last_name
+  User.create(email: "#{user_name_low}@yopmail.com", first_name: user_name, last_name: user_lastname)
+end
 
-# 7.times do |index|
-#   Event.create(title: "event#{index}", admin: User.all.sample)
-# end
+8.times do |index|
+  Event.create(start_date: Time.now+rand(30..1440), duration: rand(1800..7200), title: Faker::Superhero.name, description: Faker::Restaurant.review, price: rand(1..55), location: Faker::Address.city, admin: User.all.sample)
+end
+

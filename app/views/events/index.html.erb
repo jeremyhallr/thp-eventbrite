@@ -1,21 +1,48 @@
 <div class="jumbotron">
   <div class="container">
-    <h1 class="display-3">Hello <% if user_signed_in? %><%= current_user.email %><% end %>!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <h1 class="display-3"><% if user_signed_in? %>Hello <%= current_user.email %><% else %>Welcome <% end %>!</h1>
+    <p>This is a template for a simple event management website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <% if user_signed_in? %>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary btn-lg" %>
+      <%= link_to "My profile", user_path(current_user.id), :class => "btn btn-primary btn-lg" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-lg" %>
     <% else %>
-    <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary btn-lg" %>
-    <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "Sign in", new_user_session_path, class: "btn btn-primary btn-lg" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
 </div>
 
-<h1 class="text-dark">Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<div class="container">
 
-<% @events.each do |event| %>
-<% @event_id = event.id %>
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-info text-center" role="alert">
+      <%= msg %>
+    </div>
+  <% end %>
 
-  <h5><%= event.title %></h5>
+  <div class="row">
+
+<% @events.all.reverse.each do |event| %>
+
+    <div class="col-md-4 mb-5">
+      <h2><%= event.title %></h2>
+      <p><%= event.description %></p>
+      <%= link_to "View details", event_path(event.id), class: "mb-1 btn btn-secondary" %>
+      <div class="text-muted">
+        <p>
+          Location : <%= event.location %></br>
+          Price : <%= event.price %>€
+        </p>
+      </div>
+    </div>
+
 <% end %>
+
+  </div>
+</div>
+
+<hr>
+
+<footer class="container">
+  <p>&copy; Eventbrite-magic, THP</p>
+</footer>

@@ -1,0 +1,29 @@
+<h1 class="h1 mt-5 font-weight-normal text-center">Hello <strong><%= @email %></strong> !</h1>
+
+<div class="container text-center">
+  <%= link_to "Edit email/password", edit_user_registration_path, :class => "btn btn-primary btn-sm text-center" %>
+</div>
+
+<h2 class="h2 mt-3 mb-5 font-weight-normal text-center"><u>The events you manage :</u></h2>
+
+<div class="container">
+  <div class="row">
+
+<% @events.all.reverse.each do |event| %>
+
+    <div class="col-md-6 mb-5">
+      <h2><%= event.title %></h2>
+      <p><%= event.description %></p>
+      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      <div class="text-muted">
+        <p>
+          Location : <%= event.location %></br>
+          Price : <%= event.price %>€
+        </p>
+      </div>
+    </div>
+
+<% end %>
+
+  </div>
+</div>
