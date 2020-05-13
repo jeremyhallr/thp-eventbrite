@@ -1,4 +1,6 @@
 class AttendancesController < ApplicationController
+  before_action :authenticate_user, only: [:index]
+
   def new
     @event = Event.find(params[:id])
   end
@@ -16,5 +18,18 @@ class AttendancesController < ApplicationController
   end
 
   def index
+    @event = Event.find(params[:id])
+    @attendances = @event.attendances
+    unless current_user == @event.admin
+      flash[:failure] = "Not authorized"
+      redirect_to root_path
+    end
+  end
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Not logged in."
+      redirect_to root_path
+    end
   end
 end

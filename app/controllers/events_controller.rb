@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user, only: [:new]
+  before_action :authenticate_user, only: [:new, :edit]
 
   def new
   end
@@ -22,6 +22,39 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+    unless current_user == @event.admin
+      flash[:failure] = "Not authorized"
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @event = Event.find(params[:id])
+
+    if current_user == @event.admin
+      @event.update(title: params[:title], location: params[:location], price: params[:price], description: params[:description], start_date: params[:start_date], duration: params[:duration])
+      flash[:success] = "Event successfully updated"
+      redirect_to event_path
+    else
+      flash[:failure] = "Event update failed"
+      render :edit
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if current_user == @event.admin
+      @event.destroy
+      flash[:success] = "Event successfully removed"
+      redirect_to root_path
+    else
+      flash[:failure] = "Event removal failed"
+      render :edit
+    end
   end
 
   def authenticate_user
