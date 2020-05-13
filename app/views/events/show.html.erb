@@ -21,6 +21,10 @@
           Admin contact : <%= @event.admin.email %>
         </small>
       </p>
+      <% if user_signed_in? %>
+        <%= link_to "Register", new_attendance_path, class: "btn btn-dark text-light" %>
+      <% end %>
     </div>
   </div>
 </div>
+
