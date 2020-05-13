@@ -1,12 +1,12 @@
 <div class="jumbotron bg-light">
-  <div class="col-md-7 p-lg-5 mx-auto my-5 text-center">
+  <div class="col-md-7 p-lg-5 mx-auto my-5 text-light text-center">
     <h1 class="display-3"><% if user_signed_in? %>Hello <%= current_user.email %><% else %>Welcome <% end %>!</h1>
-    <p class="lead">This is a template for a simple event management website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p class="lead">Come have a look at our events and meet people in the real life</p>
     <% if user_signed_in? %>
       <%= link_to "My profile", user_path(current_user.id), :class => "btn btn-primary btn-lg" %>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-lg" %>
     <% else %>
-      <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-secondary" %>
+      <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-info" %>
       <%= link_to "Sign up", new_user_registration_path, class: "btn btn-dark text-light" %>
     <% end %>
   </div>
@@ -24,10 +24,10 @@
 
 <% @events.all.reverse.each do |event| %>
 
-    <div class="col-md-4 mb-5 border">
-      <h2><u><%= event.title %></u></h2>
-      <p><%= event.description %></p>
-      <%= link_to "View details", event_path(event.id), class: "mb-1 btn btn-secondary" %>
+    <div class="card col-md-4 border">
+      <h2 class="mt-1 text-center"><u><%= event.title %></u></h2>
+      <p><%= event.description.first(180) %>...</p>
+      <%= link_to "View details", event_path(event.id), class: "mb-1 btn btn-info" %>
       <div class="text-muted">
         <p>
           Location : <%= event.location %></br>
@@ -46,4 +46,3 @@
 <footer class="container">
   <p>&copy; Eventbrite-magic, THP</p>
 </footer>
-

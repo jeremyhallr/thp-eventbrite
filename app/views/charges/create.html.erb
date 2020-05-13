@@ -1,3 +1,15 @@
-<h2>Thanks, you paid <strong>$5.00</strong>!</h2>
+<h2>Thanks, you paid <strong>€€</strong>!</h2>
 
-<p>Back <%= link_to "Home", root_path, class: "btn btn-dark text-light" %></p>
+<%= current_user.id %></br>
+<%= @customer_id %></br>
+<%= @event.id %>
+
+
+  <%= form_tag attendances_path, method: "post" do %>
+
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :event_id, @event.id %>
+    <%= hidden_field_tag :customer_id, @customer_id %>
+
+    <%= submit_tag "Confirm and back to main page", class: "btn btn-dark text-light" %>
+  <% end %>

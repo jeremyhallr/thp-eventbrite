@@ -1,4 +1,65 @@
-<h1>Attendances#new</h1>
-<p>Find me in app/views/attendances/new.html.erb</p>
+<h1 class="h1 mt-5 font-weight-normal text-center">Register to Event <small class="text-muted">(id:<%= @event.id %>)</small></h1>
 
-<%= link_to "Pay", new_charge_path, class: "btn btn-dark text-light" %>
+<div class="mb-4 container">
+  <div class="card">
+    <div class="h2 card-header">
+      Event
+    </div>
+    <div class="card-body">
+      <h3 class="card-title"><%= @event.title %></h3>
+      <h6 class="card-subtitle mb-2 text-muted">Location : <%= @event.location %></h6>
+      <p class="card-text">
+        <%= @event.description %></br>
+        <small class="text-muted">
+          Start : <%= @event.start_date %></br>
+          Duration : <%= @event.duration %> minutes</br>
+          Price : <%= @event.price %>€</br>
+        </small>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2 class="mt-2">User Recap</h2>
+  <div class="mt-2 form-row">
+     <div class="form-group col-md-6">
+      <%= label_tag 'Event title' %>
+      <%= text_field_tag 'title', @event.title, class: 'form-control', :readonly => true %>
+      <br /> <br />
+    </div>
+
+     <div class="form-group col-md-3">
+      <%= label_tag 'First name' %>
+      <%= text_field_tag 'first_name', current_user.first_name, class: 'form-control', :readonly => true %>
+      <br /> <br />
+    </div>
+
+     <div class="form-group col-md-3">
+      <%= label_tag 'Last name' %>
+      <%= text_field_tag 'last_name', current_user.last_name, class: 'form-control', :readonly => true %>
+      <br /> <br />
+    </div>
+  </div>
+
+  <div class="form-row">
+     <div class="form-group col-md-2">
+      <%= label_tag 'Price' %>
+      <%= text_field_tag 'price', @event.price, class: 'form-control', :readonly => true %>
+      <br /> <br />
+    </div>
+
+     <div class="form-group col-md-2">
+      <%= label_tag 'User ID' %>
+      <%= text_field_tag 'user_id', current_user.id, class: 'form-control', :readonly => true %>
+      <br /> <br />
+    </div>
+
+     <div class="form-group col-md-2">
+      <%= label_tag 'Event ID' %>
+      <%= text_field_tag 'event_id', @event.id, class: 'form-control', :readonly => true %>
+      <br /> <br />
+    </div>
+  </div>
+  <%= link_to "Checkout and pay", new_charge_path(id: @event.id), class: "mt-2 btn btn-dark text-light text-center" %>
+</div>

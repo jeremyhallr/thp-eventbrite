@@ -22,7 +22,7 @@
         </small>
       </p>
       <% if user_signed_in? %>
-        <%= link_to "Register", new_attendance_path, class: "btn btn-dark text-light" %>
+        <%= link_to "Register", new_attendance_path(id: @event.id), class: "btn btn-dark text-light" %>
       <% end %>
     </div>
   </div>
