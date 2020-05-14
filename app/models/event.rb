@@ -17,4 +17,6 @@ class Event < ApplicationRecord
     numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 1000},
     presence: true
   validates :location, presence: true
+
+  has_one_attached :event_picture
 end
