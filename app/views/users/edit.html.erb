@@ -1,1 +1,53 @@
-<h1>Edit user</h1>
+
+<h1 class="h1 mt-5 mb-3 font-weight-normal text-center">User info edit</h1>
+
+  <div class="mb-3 container">
+
+    <div class="container text-center">
+      <h3>Avatar actuel</h3>
+      <%if @user.avatar.attached?%>
+        <%= image_tag @user.avatar, alt: 'avatar' %>
+      <%else%>
+        <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+      <%end%>
+
+
+      <h3>Changer d'avatar ?</h3>
+      <%= form_tag user_avatars_path(@user), multipart: true do %>
+        <%= file_field_tag :avatar %>
+        <%= submit_tag "mettre à jour" %>
+      <% end %>
+    </div>
+
+    <%= form_tag user_path, method: "patch" do %>
+      <div class="form-row">
+         <div class="form-group col-md-3">
+          <%= label_tag 'First name' %>
+          <%= text_field_tag 'first_name', @user.first_name, class: 'form-control' %>
+          <br/><br/>
+        </div>
+
+         <div class="form-group col-md-3">
+          <%= label_tag 'Last name' %>
+          <%= text_field_tag 'last_name', @user.last_name, class: 'form-control' %>
+          <br/><br/>
+        </div>
+
+         <div class="form-group col-md-6">
+          <%= label_tag 'Email' %>
+          <%= text_field_tag 'email', @user.email, class: 'form-control' %>
+          <br/><br/>
+        </div>
+
+         <div class="form-group col-md-12">
+          <%= label_tag 'Description' %>
+          <%= text_area_tag 'description', @user.description, class: 'form-control' %>
+            <br/><br/>
+        </div>
+      </div>
+
+      <%= submit_tag "Update info", class: "btn btn-primary" %>
+      <%= link_to "Delete profile", user_path(@user.id), :confirm => "Are you sure?", :method => :delete, class: "btn btn-danger" %>
+
+    <% end %>
+</div>

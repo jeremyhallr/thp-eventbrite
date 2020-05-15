@@ -12,4 +12,6 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver_now
   end
 
+  has_one_attached :avatar
+
 end
