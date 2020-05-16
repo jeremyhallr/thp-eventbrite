@@ -4,9 +4,13 @@ class Event < ApplicationRecord
   has_many :users, through: :attendances
 
   validates :start_date, presence: true
+
   validates :duration,
     presence: true,
     numericality: { greater_than: 0 }
+
+  validate :validate_duration_is_multiple_of_5
+
   validates :title,
     presence: true,
     length: { in: 5..140 }
@@ -19,4 +23,10 @@ class Event < ApplicationRecord
   validates :location, presence: true
 
   has_one_attached :event_picture
+
+  private
+
+  def validate_duration_is_multiple_of_5
+    duration % 5 == 0 ? true : false
+  end
 end
