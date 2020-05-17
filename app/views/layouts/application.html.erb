@@ -25,8 +25,13 @@
             <%= link_to "Home", root_path, :class => "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "New event", new_event_path, :class => "nav-link" %>
+            <%= link_to "New event", new_event_path, :class => "nav-link text-info" %>
           </li>
+          <% if user_signed_in? && current_user.email == "adminou@yopmail.com" %>
+          <li class="nav-item">
+            <%= link_to "Administration", admin_root_path, :class => "nav-link text-light" %>
+          </li>
+          <% end %>
         </ul>
       </div>
 

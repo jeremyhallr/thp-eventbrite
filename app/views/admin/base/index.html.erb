@@ -1,0 +1,11 @@
+<div class="mt-5 container text-center">
+  <h1>Welcome to your administration page</h1>
+
+  <p class="text-muted">
+    Users : <%= User.all.count %></br>
+    Events : <%= Event.all.count %>
+  </p>
+
+  <%= link_to "Access Administration", admin_users_path, :class => "btn btn-primary" %></br>
+
+</div>

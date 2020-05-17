@@ -11,9 +11,9 @@
     </div>
     <div class="card-body">
       <h5 class="card-title">First name, Last name</h5>
-      <p class="card-text"><%= current_user.first_name %>, <%= current_user.last_name %></p>
+      <p class="card-text"><%= @user.first_name %>, <%= @user.last_name %></p>
       <h5 class="card-title">Description</h5>
-      <p class="card-text"><%= current_user.description %></p>
+      <p class="card-text"><%= @user.description %></p>
       <%= link_to "Edit info", edit_user_path, :class => "btn btn-primary btn-sm" %>
     </div>
   </div>
