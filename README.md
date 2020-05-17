@@ -4,8 +4,7 @@
 
 #### [Click here to access the website on Heroku](https://thp-eventbrite-magic.herokuapp.com/)
 
-Eventbrite-like is a web app which allows Users to view, create, share and take parts</br>
-to events published on the platform. 
+Eventbrite-like is a web app which allows Users to view, create, share and take parts to events published on the platform. 
 
 ## Ruby & Rails versions
 
@@ -35,7 +34,7 @@ If you encounter an error like 'user already connected on localhost', you may us
 * $ lsof -wni tcp:4567  <br /> 
 and fetch the PIB number
 
-Then you do : <br />
+Then do : <br />
 
 * $ kill -9 [PIB]
 
