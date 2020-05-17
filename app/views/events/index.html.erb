@@ -12,8 +12,6 @@
   </div>
 </div>
 
-<div class="container">
-
   <% flash.each do |type, msg| %>
     <div class="alert alert-info text-center" role="alert">
       <%= msg %>
@@ -21,25 +19,24 @@
   <% end %>
 
   <div class="row">
-
-<% @events.all.reverse.each do |event| %>
-
-    <div class="card col-md-4 border">
-      <h2 class="mt-1 text-center"><u><%= event.title %></u></h2>
-      <p><%= event.description.first(180) %>...</p>
-      <%= link_to "View details", event_path(event.id), class: "mb-1 btn btn-info" %>
-      <div class="text-muted">
-        <p>
-          Location : <%= event.location %></br>
-          Price : <%= event.price %>€
-        </p>
+    <% @events.all.reverse.each do |event| %>
+    <div class="mb-3 col-lg-4 col-sm-6">
+      <div class="card h-100 w-100">
+        <div class="card-body">
+          <h2 class="mt-1 text-center"><u><%= event.title %></u></h2>
+          <p><%= event.description.first(250) %>...</p>
+          <%= link_to "View details", event_path(event.id), class: "mb-1 btn btn-info" %>
+          <div class="text-muted">
+            <p>
+              Location : <%= event.location %></br>
+              Price : <%= event.price %>€
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-
-<% end %>
-
+    <% end %>
   </div>
-</div>
 
 <hr>
 
