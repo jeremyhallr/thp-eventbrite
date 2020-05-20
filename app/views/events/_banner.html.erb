@@ -1,0 +1,27 @@
+<div class="jumbotron bg-light"
+  style="width: 100%;
+  min-height: 33vh;
+  background-image: url(https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 0 !important;
+  filter: brightness(90%)"
+  >
+  <div class="col-md-8 p-lg-5 mx-auto my-5 text-light text-center"
+    style="background-color: rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    border-radius: 3px;
+    height: auto;"
+    >
+    <h1 class="display-1">Eventbrite-Magic</h1>
+    <p class="lead">Come have a look at our events and meet people in real life</p>
+    <% if user_signed_in? %>
+      <%= link_to "My profile", user_path(current_user.id), :class => "btn btn-outline-light" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-primary text-light" %>
+    <% else %>
+      <%= link_to "Sign in", new_user_session_path, class: "btn btn-outline-light" %>
+      <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary text-light" %>
+    <% end %>
+  </div>
+</div>

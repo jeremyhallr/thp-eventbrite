@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand text-primary"><strong>Eventbrite-Magic</strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to "Home", root_path, :class => "nav-link text-dark" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "New event", new_event_path, :class => "nav-link text-dark" %>
+      </li>
+      <% if user_signed_in? && current_user.email == "adminou@yopmail.com" %>
+      <li class="nav-item">
+        <%= link_to "Administration", admin_root_path, :class => "nav-link text-dark" %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="btn-group">
+    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <b>Menu</b>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right">
+      <% if user_signed_in? %>
+        <%= link_to "My profile", user_path(current_user.id), :class => "dropdown-item" %>
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, :class => "dropdown-item" %>
+        <%= link_to "Sign in", new_user_session_path, :class => "dropdown-item" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
