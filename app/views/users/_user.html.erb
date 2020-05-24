@@ -23,7 +23,7 @@
       <%if @user.avatar.attached?%>
         <%= image_tag @user.avatar, alt: 'avatar' %>
       <%else%>
-        <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+        <p class="text-primary text-center my-auto">No avatar</p>
       <%end%>
     </div>
 

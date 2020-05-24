@@ -1,0 +1,74 @@
+<h1 class="h1 mt-5 mb-3 font-weight-normal text-center">Event edit</h1>
+
+<div class="container mb-3">
+
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-info text-center" role="alert">
+      <%= msg %>
+    </div>
+  <% end %>
+
+  <div class="container text-center">
+    <h3>Event picture</h3>
+    <%if @event.event_picture.attached?%>
+      <%= image_tag @event.event_picture, alt: 'event picture' %></br>
+      <%= link_to "Remove picture", @event.event_picture.purge, class: "btn btn-danger" %>
+    <%else%>
+      <%= form_tag event_event_pictures_path(@event.id), multipart: true do %>
+        <p class="text-primary text-center my-auto">No picture attached</p>
+        <div class="form-group text-center">
+          <%= file_field_tag :event_picture, class: "btn bg-secondary text-light" %>
+          <%= submit_tag "Upload" %>
+      <% end %>
+          <br/><br/>
+        </div>
+    <%end%>
+  </div>
+
+  <%= form_tag event_path, method: "patch" do %>
+    <div class="form-row">
+       <div class="form-group col-md-6">
+        <%= label_tag 'Title' %>
+        <%= text_field_tag 'title', @event.title, class: 'form-control' %>
+        <br/><br/>
+      </div>
+
+       <div class="form-group col-md-4">
+        <%= label_tag 'Location' %>
+        <%= text_field_tag 'location', @event.location, class: 'form-control' %>
+        <br/><br/>
+      </div>
+
+       <div class="form-group col-md-2">
+        <%= label_tag 'Price' %>
+        <%= text_field_tag 'price', @event.price, class: 'form-control' %>
+        <br/><br/>
+      </div>
+    </div>
+
+     <div class="form-group">
+      <%= label_tag 'Description' %>
+      <%= text_area_tag 'description', @event.description, class: 'form-control' %>
+        <br/><br/>
+    </div>
+
+    <div class="form-row">
+       <div class="form-group col-md-6">
+        <%= label_tag 'Start Date' %>
+        <%= date_field_tag 'start_date', @event.start_date, class: 'form-control' %>
+        <br/><br/>
+      </div>
+
+       <div class="form-group col-md-6">
+        <%= label_tag 'Duration (minutes)' %>
+        <%= text_field_tag 'duration', @event.duration, class: 'form-control' %>
+        <br/><br/>
+      </div>
+    </div>
+
+    <%= submit_tag "Update event", class: "btn btn-outline-primary" %>
+    <%= link_to "Remove event", event_path(@event.id), :confirm => "Are you sure?", :method => :delete, class: "btn btn-primary" %>
+
+  <% end %>
+
+</div>
